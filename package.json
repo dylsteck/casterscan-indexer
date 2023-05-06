@@ -1,36 +1,32 @@
 {
   "name": "casterscan-indexer",
   "author": "Dylan Steck",
-  "private": true,
+  "license": "ISC",
   "type": "module",
-  "version": "0.0.0",
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf ./dist",
-    "start": "tsc && node ./index.js",
-    "dev": "tsc && node ./index.js",
-    "seed": "tsc && node ./helpers/seed.js"
+    "start": "tsc && node ./dist/index.js",
+    "dev": "tsc && node ./dist/index.js",
+    "seed": "tsc && node ./dist/helpers/seed.js"
   },
   "dependencies": {
-    "@farcaster/hub-nodejs": "^0.7.1",
-    "@farcaster/protobufs": "^0.2.0",
-    "@farcaster/utils": "^0.5.0",
-    "@noble/ed25519": "^2.0.0",
-    "dotenv": "^16.0.3",
-    "ethers": "^6.3.0",
+    "@farcaster/hub-nodejs": "^0.5.0",
+    "@farcaster/protobufs": "^0.1.9",
+    "@noble/ed25519": "^1.7.3",
+    "dotenv": "^16.0.1",
+    "ethers": "^6.2.1",
+    "got": "^11.8.2",
     "kysely": "^0.24.2",
-    "kysely-postgres-js": "^1.1.1",
-    "neverthrow": "^6.0.0",
-    "node-cron": "^3.0.2",
+    "node-cron": "^3.0.0",
     "pg": "^8.10.0",
-    "pg-pool": "^3.6.0",
-    "pino": "^8.12.1",
-    "postgres": "^3.3.4",
-    "tiny-typed-emitter": "^2.1.0"
+    "pg-pool": "^3.6.0"
   },
   "devDependencies": {
-    "ts-node": "^10.9.1",
-    "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/node": "^18.7.21",
+    "@types/pg-pool": "^2.0.3",
+    "prettier": "^2.8.1",
+    "typescript": "^4.8.3"
   }
 }

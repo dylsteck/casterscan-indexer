@@ -1,3 +1,3 @@
 # casterscan-indexer
 
-Heavily inspired by the [replicate-data-postgres](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/replicate-data-postgres) example in `hub-nodejs`
+Currently a fork of [gskril/farcaster-indexer's hubs branch](https://github.com/gskril/farcaster-indexer/tree/hubs), with the addition of a cron job
