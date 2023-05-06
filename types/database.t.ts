@@ -1,113 +1,102 @@
-import { HashScheme, MessageType, ReactionType, SignatureScheme, UserDataType } from '@farcaster/hub-nodejs';
-import { Generated, GeneratedAlways } from 'kysely';
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json }
+  | Json[]
+
+export type Cast = {
+  hash: string
+  signature: string
+  signer: string
+  text: string
+  fid: number
+  mentions?: Json | null
+  parent_fid?: number | null
+  parent_hash?: string | null
+  thread_hash?: string | null
+  deleted?: boolean | null
+  pruned?: boolean | null
+  published_at: Date
+}
+
+export type Profile = {
+  id: number
+  owner?: string | null
+  username?: string | null
+  display_name?: string | null
+  bio?: string | null
+  url?: string | null
+  avatar_url?: string | null
+  registered_at?: Date | null
+  updated_at?: Date | null
+}
+
+export type Verification = {
+  fid: number
+  address: string
+  signer: string
+  signature: string
+  pruned?: boolean | null
+  created_at?: Date | null
+}
+
+export type Reaction = {
+  fid: number
+  target_cast: string
+  target_fid: number
+  type: string
+  signer: string
+  pruned?: boolean | null
+  created_at?: Date | null
+}
+
+export type Signer = {
+  fid: number
+  signer: string
+  name?: string | null
+  pruned?: boolean | null
+  created_at?: Date | null
+}
+
+export interface CastTable {
+  hash: string
+  signature: string
+  signer: string
+  text: string
+  fid: number
+  mentions: Json | null
+  parent_fid: number | null
+  parent_hash: string | null
+  thread_hash: string | null
+  deleted: boolean | null
+  pruned: boolean | null
+  published_at: Date | null
+}
+
+export interface EventTable {
+  id: number
+  created_at: Date | null
+}
+
+export interface ProfileTable {
+  id: number
+  owner: string | null
+  username: string | null
+  display_name: string | null
+  bio: string | null
+  url: string | null
+  avatar_url: string | null
+  registered_at: Date | null
+  updated_at: Date | null
+}
 
 export interface Database {
-    hubSubscriptions: {
-      host: string;
-      lastEventId: number;
-    };
-  
-    casts: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      timestamp: Date;
-      fid: number;
-      text: string;
-      hash: Uint8Array;
-      parentHash: Uint8Array | null;
-      parentFid: number | null;
-      parentUrl: string | null;
-      embeds: Generated<string[]>;
-      mentions: Generated<number[]>;
-      mentionsPositions: Generated<number[]>;
-    };
-  
-    messages: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      revokedAt: Date | null;
-      prunedAt: Date | null;
-      fid: number;
-      messageType: MessageType;
-      timestamp: Date;
-      hash: Uint8Array;
-      hashScheme: HashScheme;
-      signature: Uint8Array;
-      signatureScheme: SignatureScheme;
-      signer: Uint8Array;
-      raw: Uint8Array;
-    };
-  
-    reactions: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      fid: number;
-      reactionType: ReactionType;
-      timestamp: Date;
-      hash: Uint8Array;
-      targetHash: Uint8Array | null;
-      targetFid: number | null;
-      targetUrl: string | null;
-    };
-  
-    signers: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      timestamp: Date;
-      fid: number;
-      custodyAddress: Uint8Array;
-      signer: Uint8Array;
-      name: string | null;
-      hash: Uint8Array;
-    };
-  
-    verifications: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      fid: number;
-      timestamp: Date;
-      hash: Uint8Array;
-      claim: {
-        address: string;
-        ethSignature: string;
-        blockHash: string;
-      };
-    };
-  
-    userData: {
-      id: GeneratedAlways<string>;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      deletedAt: Date | null;
-      timestamp: Date;
-      fid: number;
-      hash: Uint8Array;
-      type: UserDataType;
-      value: string;
-    };
-  
-    fids: {
-      fid: number;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      custodyAddress: Uint8Array;
-    };
-  
-    fnames: {
-      fname: string;
-      createdAt: Generated<Date>;
-      updatedAt: Generated<Date>;
-      custodyAddress: Uint8Array;
-      expiresAt: Date;
-    };
+  casts: CastTable
+  event: EventTable
+  profile: ProfileTable
+  reaction: Reaction
+  signer: Signer
+  verification: Verification
 }
