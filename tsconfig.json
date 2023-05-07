@@ -10,5 +10,5 @@
     "esModuleInterop": true,
     "strict": true
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "src/api/test.ts", "dist/helpers/test.d.ts"]
 }
