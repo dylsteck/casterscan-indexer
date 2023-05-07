@@ -1,6 +1,6 @@
 {
   "name": "casterscan-indexer",
-  "author": "Dylan Steck",
+  "author": "Dylan Steck (fork of a repo by Greg Skriloff)",
   "license": "ISC",
   "type": "module",
   "scripts": {
